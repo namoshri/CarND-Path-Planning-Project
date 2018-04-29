@@ -1,6 +1,58 @@
 # CarND-Path-Planning-Project
 Self-Driving Car Engineer Nanodegree Program
-   
+
+### The Goal of this Project
+In this project, goal is to design a path planner that is able to create smooth, safe paths for the car to follow along a 3 lane highway with traffic. A successful path planner will be able to keep inside its lane, avoid hitting other cars, and pass slower moving traffic all by using localization, sensor fusion, and map data.
+
+### Rubik points discussions:
+#### Code and Compilation
+Code compiles without errors with cmake and make.
+
+#### Car is able to drive with given constraints
+Car is able to complete track of mininum 4.12 miles
+- without any collision
+- With MAX speed limit set to ~50MPH
+- does not exceed a total acceleration of 10 m/s^2 and a jerk of 10 m/s^3.
+- Maintains lanes
+- Change lanes as needed without any collision 
+
+Link to path planner [video](https://youtu.be/Fa6Te4EVxxc)
+
+### Reflection
+Overall, code implemented in src/main.cpp [Project Walkthrough](https://classroom.udacity.com/nanodegrees/nd013/parts/6047fe34-d93c-4f50-8336-b70ef10cb4b2/modules/27800789-bc8e-4adc-afe0-ec781e82ceae/lessons/23add5c6-7004-47ad-b169-49a5d7b1c1cb/concepts/3bdfeb8c-8dd6-49a7-9d08-beff6703792d) refered for initial understanding of helper functions provided and trajectory implementation.
+
+
+####
+#### Velocity and Lane control
+It's important that the car doesn't crash into any of the other vehicles on the road, all of which are moving at different speeds around the speed limit and can change lanes.
+
+Provided sensor_fusion variable contains all the information about the cars on the right-hand side of the road.
+
+These values useful for predicting where the car(s) will be in the future. 
+
+Sensor fusion data with telemetry used in code (from line 254 of main.cpp) to predict car(s) movement. Prediction done if car is in path, car is in left or car is in right. 
+
+Based on prediction and car speed, change lane decision taken (line 295) and same logic used to control velocity of car. 
+Max speed limit, accelaration and Jerk behaviour managed in this section. This helps creating smooth path with change lane and with control on speed.
+
+#### Trajectory and path planner
+The path planner outputs a list of x and y global map coordinates. 
+All the X and Y co-ordinates points together form a trajectory. 
+
+For smooth path planner and trajectory formation, previous history points used as reference and same appended as waypoints.(Line 325).
+
+getXY helper API converts Frenet (s,d) coordinates of may waypoints and transforms them to (x,y) coordinates. (Line 350)
+
+Interpolation of points and smooth trajectory spline library used. ( Line 373)
+ 
+The car moves from point to point perfectly, so controller is not built.
+ 
+ Final x and y values sent further to simulator.
+ 
+ Link to path planner [video](https://youtu.be/Fa6Te4EVxxc)
+ 
+ 
+## Project Setup
 ### Simulator.
 You can download the Term3 Simulator which contains the Path Planning Project from the [releases tab (https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2).
 

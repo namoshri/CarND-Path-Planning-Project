@@ -270,21 +270,23 @@ int main() {
 
 			//same lane
 			if (check_lane == lane) {
-				if ((check_car_s > car_s) && ((check_car_s-car_s) < 30)) {
+				if ((check_car_s > car_s) && ((check_car_s-car_s) < 37)) {
 					//cout << "car in same lane" << endl;
 					same_too_close |= true;
 				}
 			}
 			//Left side
 			if (check_lane == (lane - 1)) {
-				if ((check_car_s > car_s) && ((check_car_s-car_s) < 30)) {
+				if (((check_car_s > car_s) && (check_car_s-car_s) < 40) || //keep front car safe
+				    ((check_car_s < car_s) && (car_s-check_car_s) < 7)) { //Keep behind car safe
 					//cout << "car in left lane" << endl;
 					left_too_close |= true;
 				}
 			}
 			//Right side
 			if (check_lane == (lane + 1)) {
-				if ((check_car_s > car_s) && ((check_car_s-car_s) < 30)) {
+				if (((check_car_s > car_s) && (check_car_s-car_s) < 40) ||
+				    ((check_car_s < car_s) && (car_s-check_car_s) < 7)) {
 					//cout << "car in right lane" << endl;
 					right_too_close |= true;
 				}
@@ -303,12 +305,13 @@ int main() {
 				ref_vel -= 0.024;
 			} else {
 				//cout << "reduce speed" << endl;
-				ref_vel -= 0.324;
+				ref_vel -= 0.524;
 			}
 		} else {
 			//cout << "Speed up" << endl;
-			if (ref_vel < 49.5)
-				ref_vel += 0.224;
+			ref_vel += 0.224;
+			if (ref_vel >= 49.0)
+				ref_vel = 49.0;
 		}
 
 		vector<double> ptsx;
