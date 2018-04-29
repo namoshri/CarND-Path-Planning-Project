@@ -51,7 +51,13 @@ The car moves from point to point perfectly, so controller is not built.
  
  Link to path planner [video](https://youtu.be/Fa6Te4EVxxc)
  
- 
+
+
+#### References:
+-  [Project Walkthrough](https://classroom.udacity.com/nanodegrees/nd013/parts/6047fe34-d93c-4f50-8336-b70ef10cb4b2/modules/27800789-bc8e-4adc-afe0-ec781e82ceae/lessons/23add5c6-7004-47ad-b169-49a5d7b1c1cb/concepts/3bdfeb8c-8dd6-49a7-9d08-beff6703792d)
+- [Spline libary](http://kluge.in-chemnitz.de/opensource/spline/)
+
+
 ## Project Setup
 ### Simulator.
 You can download the Term3 Simulator which contains the Path Planning Project from the [releases tab (https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2).
